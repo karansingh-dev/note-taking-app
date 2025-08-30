@@ -14,5 +14,12 @@ export const registerUserSchema = z.object({
   otp: z.string().regex(/^\d{6}$/, "Invalid Otp Format"),
 });
 
+
+
+export const signInSchema = z.object({
+  email: z.email("Invalid email address"),
+});
+
+export type signInData = z.infer<typeof signInSchema>;
 export type RegisterData = z.infer<typeof registerUserSchema>;
 export type SignUpData = z.infer<typeof signUpSchema>;
