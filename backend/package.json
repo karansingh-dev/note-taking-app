@@ -16,6 +16,7 @@
   "author": "karan singh",
   "license": "ISC",
   "dependencies": {
+   
     "@prisma/client": "^6.15.0",
     "body-parser": "^2.2.0",
     "cors": "^2.8.5",
