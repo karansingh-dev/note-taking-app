@@ -5,3 +5,4 @@ this file will be imported in the index.ts so that the index file does not look 
 */
 
 import "../controller/user.controller.js";
+

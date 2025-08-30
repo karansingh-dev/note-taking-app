@@ -10,7 +10,11 @@ type authType = "noauth" | "protected";
 function get(
   route: string,
   auth: authType,
-  controller: (req: Request, res: Response) => Promise<Response>
+  controller: (
+    req: Request,
+    res: Response,
+
+  ) => Promise<Response> 
 ) {
   if (auth == "noauth") {
     return router.get(

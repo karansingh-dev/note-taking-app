@@ -5,13 +5,21 @@ import config from "./config/config.js";
 import "./routes/allRoutes.js";
 import { router } from "./routes/router.js";
 import { globalErrorHandler } from "./middleware/errorHandler.js";
+import { router as googleAuth } from "./controller/googleAuth.controller.js";
 
 const app: Application = express();
 
-app.use(cors());
+app.use(
+  cors({
+    origin: config.FRONTEND_URL,
+    methods: ["GET", "POST", "PUT", "DELETE"],
+  })
+);
 app.use(bodyParser.json());
 
 app.use("/api", router);
+//for google sign in option
+app.use(googleAuth);
 
 app.use(globalErrorHandler);
 

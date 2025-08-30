@@ -51,6 +51,7 @@ export const getOtpForSignUp = async (
       verifyCode: otp,
       verifyCodeExpiresAt: otpExpiresAt,
       isRegistered: false, // Important: not registered yet
+      authProvider: "email",
     },
   });
 
@@ -104,7 +105,7 @@ export const signUp = async (
     throw new ApiError(400, "Incorrect OTP", ["Wrong OTP provided"]);
   }
 
-  if (user.verifyCodeExpiresAt < new Date()) {
+  if (user.verifyCodeExpiresAt && user.verifyCodeExpiresAt < new Date()) {
     throw new ApiError(400, "OTP expired", ["Please request a new OTP"]);
   }
 
@@ -216,7 +217,7 @@ export const signIn = async (
     throw new ApiError(400, "Incorrect OTP", ["Wrong OTP provided"]);
   }
 
-  if (user.verifyCodeExpiresAt < new Date()) {
+  if (user.verifyCodeExpiresAt && user.verifyCodeExpiresAt < new Date()) {
     throw new ApiError(400, "OTP expired", ["Please request a new OTP"]);
   }
 

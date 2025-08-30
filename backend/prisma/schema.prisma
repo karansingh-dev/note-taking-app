@@ -14,20 +14,20 @@ enum AuthProvider {
 }
 
 model User {
-  id             String   @id @default(uuid()) @db.Uuid
-  name           String   @db.VarChar(50)
-  email          String   @unique @db.VarChar(255)
-  dob            DateTime
-  profilePicture String?  @map("profile_picture") @db.VarChar(255)
+  id             String    @id @default(uuid()) @db.Uuid
+  name           String    @db.VarChar(50)
+  email          String    @unique @db.VarChar(255)
+  dob            DateTime?
+  profilePicture String?   @map("profile_picture") @db.VarChar(255)
 
   // OTP Authentication fields
-  verifyCode          String   @map("verify_code") @db.VarChar(6)
-  verifyCodeExpiresAt DateTime @map("verify_code_expires_at")
-  isRegistered        Boolean  @default(false) @map("is_registered")
+  verifyCode          String?   @map("verify_code") @db.VarChar(6)
+  verifyCodeExpiresAt DateTime? @map("verify_code_expires_at")
+  isRegistered        Boolean   @map("is_registered")
 
   // OAuth fields 
   googleId     String?      @unique @map("google_id") @db.VarChar(255)
-  authProvider AuthProvider @default(email) @map("auth_provider")
+  authProvider AuthProvider @map("auth_provider")
 
   createdAt DateTime @default(now()) @map("created_at")
   updatedAt DateTime @updatedAt @map("updated_at")

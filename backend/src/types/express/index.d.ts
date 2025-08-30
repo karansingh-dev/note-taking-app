@@ -12,5 +12,15 @@ declare global {
         email: string;
       };
     }
+
+    interface User {
+      id: string;
+      email: string;
+      isRegistered: boolean;
+      name?: string;
+      googleId?: string | null;
+      authProvider?: string;
+      profilePicture?: string | null;
+    }
   }
 }
