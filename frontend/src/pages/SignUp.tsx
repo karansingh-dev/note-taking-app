@@ -136,6 +136,11 @@ export default function SignUp() {
                                     onChange={(e) => setOtp(e.target.value)}
                                 />
                             )}
+                            {otpSent && <button onClick={handleSubmit(onSubmit)} className='underline text-blue-500 text-sm self-start'>
+
+                                Resend Otp
+
+                            </button>}
                             {otpError && <p className='text-rose-500'>{otpError}</p>}
                         </div>
 
