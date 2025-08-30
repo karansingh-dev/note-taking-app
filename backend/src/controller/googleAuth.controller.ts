@@ -4,7 +4,7 @@ import { generateJwt } from "../utils/jwt.js";
 
 export const router = express.Router();
 router.get(
-  "/auth/google/",
+  "/api/auth/google/",
   passport.authenticate("google", { scope: ["profile", "email"] })
 );
 
