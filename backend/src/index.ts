@@ -7,6 +7,7 @@ import { router } from "./routes/router.js";
 import { globalErrorHandler } from "./middleware/errorHandler.js";
 import { router as googleAuth } from "./controller/googleAuth.controller.js";
 import { dbConnection } from "./lib/prismaClient.js";
+import type { Request, Response } from "express";
 
 const app: Application = express();
 
@@ -17,6 +18,10 @@ app.use(
   })
 );
 app.use(bodyParser.json());
+
+app.get("/health", (req: Request, res: Response) => {
+  res.json({ message: "health", success: true }).status(200);
+});
 
 app.use("/api", router);
 
