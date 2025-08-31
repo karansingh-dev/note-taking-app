@@ -29,7 +29,7 @@ export const authMiddleware = async (
 
     if (isJwtPayload) {
       const { userId, email, isRegistered } = decodedToken;
-      req.user = { userId, email, isRegistered };
+      req.userData = { userId, email, isRegistered };
 
       next();
     } else {
