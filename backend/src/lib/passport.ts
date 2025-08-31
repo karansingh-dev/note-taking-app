@@ -63,7 +63,7 @@ passport.use(
             where: { email: email.toLowerCase() },
             data: {
               googleId: profile.id,
-              authProvider: "google", // you could keep as "email" if you want dual login
+              authProvider: "google",
               profilePicture: profile.photos?.[0]?.value || user.profilePicture,
             },
             select: {
