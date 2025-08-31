@@ -68,5 +68,7 @@ export const deleteNote = async (req: Request, res: Response) => {
     .status(200);
 };
 
+//Routes
+api.get("/note", "protected", getNotes);
 api.post("/note", "protected", addNote);
 api.delete("/note", "protected", deleteNote);
