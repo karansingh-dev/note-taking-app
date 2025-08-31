@@ -1,8 +1,8 @@
 import { Routes, Route } from 'react-router-dom';
-import Home from './pages/Home';
+import Home from './pages/app/Home';
 import SignUp from './pages/auth/SignUp';
 import SignIn from './pages/auth/SignIn';
-import Dashboard from './pages/Dashboard';
+import Dashboard from './pages/app/Dashboard';
 import AuthCallback from './pages/auth/AuthCallback';
 import ProtectedRoutes from './feature/dashboard/AuthGuard';
 
@@ -10,12 +10,7 @@ const App = () => {
   return (
     <>
 
-
-
-
       <Routes>
-
-
 
         {/* Protected Route   */}
 
