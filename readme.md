@@ -38,7 +38,7 @@ JWT_SECRET=your-jwt-secret-key
 GOOGLE_CLIENT_ID=your-google-client-id
 GOOGLE_CLIENT_SECRET=your-google-client-secret
 GOOGLE_CALLBACK_URL=http://localhost:5000/auth/google/callback
-FRONTEND_URL=http://localhost:3000
+FRONTEND_URL=http://localhost:5173
 ```
 
 **Database Setup:**
@@ -112,7 +112,7 @@ npm run preview
 ## Notes
 
 - Backend runs on port 5000 (configurable via PORT env var)
-- Frontend runs on port 3000 during development
+- Frontend runs on port 5173 during development
 - Database migrations are handled by Prisma
 - Authentication uses JWT tokens and Google OAuth
 
