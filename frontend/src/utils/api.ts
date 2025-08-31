@@ -1,4 +1,4 @@
-export const baseUrl = "http://localhost:5000/api";
+export const baseUrl = "http://note.invodrop.app/api";
 
 type methods = "POST" | "GET" | "PUT" | "DELETE";
 type authType = "noauth" | "protected";
