@@ -3,7 +3,7 @@ import { useQuery } from "@tanstack/react-query";
 import { createContext, useContext, useEffect, useState } from "react";
 import { toast } from "react-hot-toast"
 import type { UserDetailsType } from "../types";
-import { getUserData } from "../feature/context/getUserData";
+import { getUserData } from "../feature/api/getUserData";
 
 export interface LayoutProps {
   children: React.ReactNode;
