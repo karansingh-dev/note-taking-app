@@ -6,7 +6,7 @@ declare global {
  Adding user object in the request for authentication purposes
  */
     interface Request {
-      user: {
+      userData: {
         userId: string;
         isRegistered: boolean;
         email: string;
