@@ -7,16 +7,15 @@
   "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "tsc",
-    "dev": "tsx --watch src/index.ts",
-    "start": "node dist/index.ts",
+    "build": "npm run db:generate &&  tsc && cp -r src/generated dist/",
+    "dev": " tsx --watch src/index.ts",
+    "start": " pm2 start dist/index.js",
     "db:migrate": "npx prisma migrate dev --skip-generate",
     "db:generate": "npx prisma generate"
   },
   "author": "karan singh",
   "license": "ISC",
   "dependencies": {
-   
     "@prisma/client": "^6.15.0",
     "body-parser": "^2.2.0",
     "cors": "^2.8.5",
@@ -27,6 +26,7 @@
     "nodemailer": "^7.0.5",
     "passport": "^0.7.0",
     "passport-google-oauth20": "^2.0.0",
+    "pm2": "^6.0.8",
     "zod": "^4.1.5"
   },
   "devDependencies": {

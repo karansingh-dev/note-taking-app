@@ -1,41 +1,24 @@
 import type { Notes } from "../../types";
+import { apiCall } from "../../utils/api";
 import type { AddNoteType } from "../../validation/noteSchema";
 
 export const getNotes = async () => {
-  const res = await fetch("http://localhost:5000/api/note", {
-    headers: {
-      "Content-Type": "application/json",
-      Authorization: `Bearer ${localStorage.getItem("token")}`,
-    },
-  });
-
-  const result = await res.json();
-
-  return result.data as Notes[];
+  const res = await apiCall<Notes[], null>("/note", "GET", "protected");
+  return res.data;
 };
 
 export async function createNote(note: AddNoteType) {
-  const res = await fetch("http://localhost:5000/api/note", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      Authorization: `Bearer ${localStorage.getItem("token")}`,
-    },
-    body: JSON.stringify(note),
-  });
-  if (!res.ok) throw new Error("Failed to create note");
-  const result = await res.json();
-  return result.data;
+  const res = await apiCall<string, AddNoteType>(
+    "/note",
+    "POST",
+    "protected",
+    note
+  );
+
+  return res.data;
 }
 
 export async function deleteNote(id: string) {
-  const res = await fetch(`http://localhost:5000/api/note/${id}`, {
-    method: "DELETE",
-    headers: {
-      "Content-Type": "application/json",
-      Authorization: `Bearer ${localStorage.getItem("token")}`,
-    },
-  });
-  if (!res.ok) throw new Error("Failed to delete note");
-  return id;
+  const res = await apiCall<string, null>(`/note/${id}`, "DELETE", "protected");
+  return res.data;
 }
