@@ -10,9 +10,12 @@ import { useNavigate } from 'react-router-dom';
 import { Loader } from 'lucide-react';
 import { OrSeparator } from '../../components/atoms/or-separator';
 import { handleGoogleSignIn } from '../../action/google-signin';
+import { useUser } from '../../context/userContext';
 
 
 export default function SignIn() {
+
+    const {setToken} = useUser();
 
     const navigate = useNavigate();
     const [loading, setLoading] = useState<boolean>(false);
@@ -69,6 +72,7 @@ export default function SignIn() {
             if (result.success) {
                 toast.success(result.message);
                 localStorage.setItem("token", result.data.jwt);
+                setToken(result.data.jwt);
                 navigate("/dashboard")
             } else {
                 toast.error(result.message || "Invalid OTP");
@@ -138,7 +142,7 @@ export default function SignIn() {
                                     onClick={handleLogin}
                                     disabled={loading}
                                 >
-                                    {loading ? <BasicLoader /> : "Sign up"}
+                                    {loading ? <BasicLoader /> : "Sign In"}
                                 </Button>
                             ) : (
                                 <Button

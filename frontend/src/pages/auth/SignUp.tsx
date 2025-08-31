@@ -12,8 +12,11 @@ import type { Dayjs } from 'dayjs';
 import { Loader } from "lucide-react"
 import { OrSeparator } from '../../components/atoms/or-separator';
 import { handleGoogleSignIn } from '../../action/google-signin';
+import { useUser } from '../../context/userContext';
 
 export default function SignUp() {
+
+    const { setToken } = useUser();
 
 
     const navigate = useNavigate();
@@ -29,6 +32,8 @@ export default function SignUp() {
     const email = watch("email");
 
     const onSubmit: SubmitHandler<SignUpData> = async (data) => {
+
+
         setLoading(true);
         try {
             const res = await fetch(`http://localhost:5000/api/user/signup-otp`, {
@@ -71,6 +76,7 @@ export default function SignUp() {
             if (result.success) {
                 toast.success(result.message);
                 localStorage.setItem("token", result.data.jwt);
+                setToken(result.data.jwt);
                 navigate("/dashboard")
             } else {
                 toast.error(result.message || "Invalid OTP");
