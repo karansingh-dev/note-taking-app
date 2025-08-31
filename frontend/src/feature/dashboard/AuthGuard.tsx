@@ -1,5 +1,3 @@
-
-
 import { Outlet, Navigate } from "react-router-dom";
 import { useUser } from "../../context/userContext";
 import LoadingScreen from "../../components/atoms/loading-screen";

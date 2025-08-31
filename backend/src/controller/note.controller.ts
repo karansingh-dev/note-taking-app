@@ -13,6 +13,14 @@ export const getNotes = async (req: Request, res: Response) => {
     where: {
       userId: user.userId,
     },
+    select: {
+      id: true,
+      title: true,
+      description: true,
+    },
+    orderBy: {
+      createdAt: "desc",
+    },
   });
 
   return res.json({
@@ -71,4 +79,4 @@ export const deleteNote = async (req: Request, res: Response) => {
 //Routes
 api.get("/note", "protected", getNotes);
 api.post("/note", "protected", addNote);
-api.delete("/note", "protected", deleteNote);
+api.delete("/note/:noteId", "protected", deleteNote);
