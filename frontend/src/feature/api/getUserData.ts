@@ -1,15 +1,12 @@
 import type { UserDetailsType } from "../../types";
+import { apiCall } from "../../utils/api";
 
 export const getUserData = async () => {
-  const res = await fetch("http://localhost:5000/api/user", {
-    method: "GET",
-    headers: {
-      "Content-Type": "application/json",
-      Authorization: `Bearer ${localStorage.getItem("token")}`,
-    },
-  });
+  const res = await apiCall("/user", "GET", "protected");
+  
 
-  const result = await res.json();
 
-  return result.data.user as UserDetailsType;
+ return res.data;
+
+
 };

@@ -1,6 +1,4 @@
-import { useState } from "react";
-import { useForm } from "react-hook-form";
-import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+
 import Dialog from "@mui/material/Dialog";
 import DialogTitle from "@mui/material/DialogTitle";
 import DialogContent from "@mui/material/DialogContent";
@@ -8,58 +6,32 @@ import DialogActions from "@mui/material/DialogActions";
 import TextField from "@mui/material/TextField";
 import { Button, Card, CardContent, CircularProgress, IconButton } from "@mui/material";
 import { Loader, Trash2 } from "lucide-react";
-import { useUser } from "../../context/userContext";
-import { createNote, deleteNote, getNotes } from "../../feature/dashboard/api";
-import { type AddNoteType } from "../../validation/noteSchema";
-import toast from "react-hot-toast";
-import type { Notes } from "../../types";
+import { useDashboard } from "../../feature/dashboard/useDashboard";
+
 
 
 export default function Dashboard() {
 
+    const { notes,
+        isLoading,
+        isError,
 
 
-    const { data, isLoading, isError } = useQuery({
-        queryFn: getNotes,
-        queryKey: ["notes"],
-    });
+        user,
+        logOut,
 
-    const { user, logOut } = useUser();
-    const queryClient = useQueryClient();
-
-    const [open, setOpen] = useState(false);
-
-    const { register, handleSubmit, reset } = useForm<AddNoteType>({
-
-        defaultValues: { title: "", description: "" },
-    });
-
-    const mutation = useMutation({
-        mutationFn: createNote,
-        onSuccess: (id, variables) => {
+        // modal/form
+        open,
+        setOpen,
+        register,
+        handleSubmit,
 
 
-            const newNote = { ...variables, ...id };
+        // mutations
+        mutation,
+        deleteMutation, } = useDashboard();
 
-            queryClient.setQueryData(["notes"], (old: any) =>
-                old ? [...old, newNote] : [newNote]
-            );
-            reset();
-            setOpen(false);
-            toast.success("Task added successfully");
-        },
-    });
 
-    const deleteMutation = useMutation({
-        mutationFn: deleteNote,
-        onSuccess: (data) => {
-
-            queryClient.setQueryData(["notes"], (old: Notes[] | undefined) =>
-                old ? old.filter((note) => note.id !== data) : []
-            );
-            toast.success("Note deleted");
-        },
-    });
 
     if (isLoading) {
         return (
@@ -110,7 +82,7 @@ export default function Dashboard() {
             {/* Notes List */}
             <div className="w-full max-w-md space-y-3">
                 <h3 className="font-semibold text-lg text-gray-700">Notes</h3>
-                {data?.map((note) => (
+                {notes?.map((note) => (
                     <Card key={note.id} className="w-full shadow-sm">
                         <CardContent className="flex justify-between items-center">
                             <div className="flex flex-col">

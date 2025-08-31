@@ -1,88 +1,26 @@
 import { Button } from '@mui/material';
 import TextField from '@mui/material/TextField';
-import { useForm, type SubmitHandler } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { signInSchema, type signInData } from '../../validation/userSchema';
-import { toast } from "react-hot-toast";
-import { useState } from 'react';
 import BasicLoader from '../../components/atoms/basic-loader';
-import { useNavigate } from 'react-router-dom';
 import { Loader } from 'lucide-react';
 import { OrSeparator } from '../../components/atoms/or-separator';
 import { handleGoogleSignIn } from '../../action/google-signin';
-import { useUser } from '../../context/userContext';
+import { useSignin } from '../../feature/auth/signin/useSignin';
 
 
 export default function SignIn() {
 
-    const {setToken} = useUser();
+    const {
+        register,
+        handleSubmit,
+        errors,
+        onSubmit,
+        otpSent,
 
-    const navigate = useNavigate();
-    const [loading, setLoading] = useState<boolean>(false);
-    const [otpSent, setOtpSent] = useState<boolean>(false);
-    const [otpError, setOtpError] = useState<string>("");
-    const [otp, setOtp] = useState<string>("");
-
-    const { register, handleSubmit, formState: { errors }, watch } = useForm<signInData>({
-        resolver: zodResolver(signInSchema),
-    });
-
-    const email = watch("email");
-
-    const onSubmit: SubmitHandler<signInData> = async (data) => {
-        setLoading(true);
-        try {
-            const res = await fetch(`http://localhost:5000/api/user/signin-otp`, {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify(data)
-            });
-
-            const result = await res.json();
-            if (result.success) {
-                toast.success(result.message);
-                setOtpSent(true);
-            } else {
-                toast.error(result.message || "Failed to send OTP");
-            }
-        } catch (err) {
-            toast.error("Something went wrong. Please try again.");
-        } finally {
-            setLoading(false);
-        }
-    };
-
-    const OTP_REGEX = /^\d{6}$/;
-
-    const handleLogin = async () => {
-        if (!otp || !OTP_REGEX.test(otp)) {
-            setOtpError("Please enter Valid OTP");
-            return;
-        }
-        setLoading(true);
-        try {
-            const data = { otp, email };
-            const res = await fetch(`http://localhost:5000/api/user/signin`, {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify(data)
-            });
-
-            const result = await res.json();
-            if (result.success) {
-                toast.success(result.message);
-                localStorage.setItem("token", result.data.jwt);
-                setToken(result.data.jwt);
-                navigate("/dashboard")
-            } else {
-                toast.error(result.message || "Invalid OTP");
-            }
-        } catch (err) {
-            toast.error("Something went wrong.");
-        } finally {
-            setLoading(false);
-        }
-    };
+        setOtp,
+        otpError,
+        handleLogin,
+        loading,
+    } = useSignin();
 
     return (
         <div className="min-h-screen bg-white ">
@@ -126,7 +64,7 @@ export default function SignIn() {
                                 />
                             )}
 
-                            {otpSent && <button onClick={handleSubmit(onSubmit)} className='underline text-blue-500 text-sm'>
+                            {otpSent && <button onClick={handleSubmit(onSubmit)} className='underline text-blue-500 text-sm self-start'>
 
                                 Resend Otp
 

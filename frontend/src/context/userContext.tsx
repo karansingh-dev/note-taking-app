@@ -74,6 +74,7 @@ export const UserProvider = (props: LayoutProps) => {
       setTokenState(null);
     } else if (isSuccess) {
       if (userData) {
+        
         setUser(userData);
       } else {
         setUser(null);
