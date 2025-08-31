@@ -3,15 +3,18 @@ import TextField from '@mui/material/TextField';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import { useForm, type SubmitHandler } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { signUpSchema, type SignUpData } from '../validation/userSchema';
+import { signUpSchema, type SignUpData } from '../../validation/userSchema';
 import { toast } from "react-hot-toast";
 import { useState } from 'react';
-import BasicLoader from '../components/atoms/basic-loader';
+import BasicLoader from '../../components/atoms/basic-loader';
 import { useNavigate } from 'react-router-dom';
 import type { Dayjs } from 'dayjs';
 import { Loader } from "lucide-react"
+import { OrSeparator } from '../../components/atoms/or-separator';
+import { handleGoogleSignIn } from '../../action/google-signin';
 
 export default function SignUp() {
+
 
     const navigate = useNavigate();
     const [loading, setLoading] = useState<boolean>(false);
@@ -90,7 +93,7 @@ export default function SignUp() {
 
                         <div className="text-center md:text-left relative">
                             {/* Logo */}
-                            <div className="flex gap-2 items-center justify-center md:justify-start md:absolute md:-top-35 md:-left-35">
+                            <div className="flex gap-2 items-center justify-center md:justify-start md:absolute md:-top-26 md:-left-35">
                                 <Loader className="text-blue-600" />
                                 <span className="text-lg">HD</span>
                             </div>
@@ -165,6 +168,20 @@ export default function SignUp() {
                                 </Button>
                             )}
                         </div>
+                        <OrSeparator />
+                        <Button
+                            variant='outlined'
+                            disabled={otpSent}
+                            onClick={handleGoogleSignIn}
+                            className=" text-white font-medium w-full flex items-center gap-2"
+                        >
+                            <img
+                                src="https://developers.google.com/identity/images/g-logo.png"
+                                alt="Google logo"
+                                className="w-5 h-5"
+                            />
+                            Sign in with Google
+                        </Button>
                     </form>
 
                     <div className='text-sm font-normal mt-3'>

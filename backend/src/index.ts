@@ -6,6 +6,7 @@ import "./routes/allRoutes.js";
 import { router } from "./routes/router.js";
 import { globalErrorHandler } from "./middleware/errorHandler.js";
 import { router as googleAuth } from "./controller/googleAuth.controller.js";
+import { dbConnection } from "./lib/prismaClient.js";
 
 const app: Application = express();
 
@@ -18,6 +19,7 @@ app.use(
 app.use(bodyParser.json());
 
 app.use("/api", router);
+
 //for google sign in option
 app.use(googleAuth);
 
