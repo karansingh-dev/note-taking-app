@@ -154,7 +154,7 @@ export const getOtpForSignIn = async (
     },
   });
 
-  if (!user || !user.isRegistered || user.authProvider !== "email") {
+  if (!user || !user.isRegistered) {
     throw new ApiError(400, "Failed to send OTP", [
       "Invalid email or user not registered with email",
     ]);
@@ -209,7 +209,7 @@ export const signIn = async (
     },
   });
 
-  if (!user || !user.isRegistered || user.authProvider !== "email") {
+  if (!user || !user.isRegistered) {
     throw new ApiError(400, "Failed to sign in", [
       "User not found or not registered with email",
     ]);

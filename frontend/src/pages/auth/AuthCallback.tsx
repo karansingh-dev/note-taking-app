@@ -1,8 +1,11 @@
 import { useEffect } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import BasicLoader from "../../components/atoms/basic-loader";
+import { useUser } from "../../context/userContext";
 
 export default function AuthCallback() {
+
+    const { setToken } = useUser();
     const [searchParams] = useSearchParams();
     const navigate = useNavigate();
 
@@ -12,7 +15,8 @@ export default function AuthCallback() {
         if (token) {
 
 
-            localStorage.setItem("auth_token", token);
+            localStorage.setItem("token", token);
+            setToken(token);
 
 
             navigate("/dashboard", { replace: true });
