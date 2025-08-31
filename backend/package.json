@@ -9,7 +9,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "npm run db:generate &&  tsc && cp -r src/generated dist/",
     "dev": " tsx --watch src/index.ts",
-    "start": " node  dist/index.js",
+    "start": " pm2 start  dist/index.js",
     "db:migrate": "npx prisma migrate dev --skip-generate",
     "db:generate": "npx prisma generate"
   },
