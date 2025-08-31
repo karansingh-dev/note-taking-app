@@ -1,92 +1,36 @@
 import { Button } from '@mui/material';
 import TextField from '@mui/material/TextField';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
-import { useForm, type SubmitHandler } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { signUpSchema, type SignUpData } from '../../validation/userSchema';
-import { toast } from "react-hot-toast";
-import { useState } from 'react';
+
 import BasicLoader from '../../components/atoms/basic-loader';
-import { useNavigate } from 'react-router-dom';
+
 import type { Dayjs } from 'dayjs';
 import { Loader } from "lucide-react"
 import { OrSeparator } from '../../components/atoms/or-separator';
 import { handleGoogleSignIn } from '../../action/google-signin';
-import { useUser } from '../../context/userContext';
+
+import { useSignup } from '../../feature/auth/signup/useSignup';
 
 export default function SignUp() {
 
-    const { setToken } = useUser();
+
+    const {
+        register,
+        handleSubmit,
+        errors,
+        onSubmit,
+        setValue,
+
+        setOtp,
+        otpError,
+        otpSent,
+        handleRegister,
+        loading,
+    } = useSignup();
 
 
-    const navigate = useNavigate();
-    const [loading, setLoading] = useState<boolean>(false);
-    const [otpSent, setOtpSent] = useState<boolean>(false);
-    const [otpError, setOtpError] = useState<string>("");
-    const [otp, setOtp] = useState<string>("");
-
-    const { register, handleSubmit, setValue, formState: { errors }, watch } = useForm<SignUpData>({
-        resolver: zodResolver(signUpSchema),
-    });
-
-    const email = watch("email");
-
-    const onSubmit: SubmitHandler<SignUpData> = async (data) => {
 
 
-        setLoading(true);
-        try {
-            const res = await fetch(`http://localhost:5000/api/user/signup-otp`, {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ ...data })
-            });
-
-            const result = await res.json();
-            if (result.success) {
-                toast.success(result.message);
-                setOtpSent(true);
-            } else {
-                toast.error(result.message || "Failed to send OTP");
-            }
-        } catch (err) {
-            toast.error("Something went wrong. Please try again.");
-        } finally {
-            setLoading(false);
-        }
-    };
-
-    const OTP_REGEX = /^\d{6}$/;
-
-    const handleRegister = async () => {
-        if (!otp || !OTP_REGEX.test(otp)) {
-            setOtpError("Please enter Valid OTP");
-            return;
-        }
-        setLoading(true);
-        try {
-            const data = { otp, email };
-            const res = await fetch(`http://localhost:5000/api/user/signup`, {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify(data)
-            });
-
-            const result = await res.json();
-            if (result.success) {
-                toast.success(result.message);
-                localStorage.setItem("token", result.data.jwt);
-                setToken(result.data.jwt);
-                navigate("/dashboard")
-            } else {
-                toast.error(result.message || "Invalid OTP");
-            }
-        } catch (err) {
-            toast.error("Something went wrong.");
-        } finally {
-            setLoading(false);
-        }
-    };
 
     return (
         <div className="min-h-screen bg-white">

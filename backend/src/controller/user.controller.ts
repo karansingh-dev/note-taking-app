@@ -129,7 +129,7 @@ export const signUp = async (
     .json({
       success: true,
       message: "Sign up successful",
-      data: { jwt },
+      data: jwt,
       error: null,
     })
     .status(201);
@@ -234,7 +234,7 @@ export const signIn = async (
   return res.json({
     success: true,
     message: "Sign in successful",
-    data: { jwt },
+    data: jwt,
     error: null,
   });
 };
@@ -262,9 +262,7 @@ export const getUserData = async (req: Request, res: Response) => {
   return res.json({
     success: true,
     message: "User data fetched successfully",
-    data: {
-      user,
-    },
+    data: user
   });
 };
 

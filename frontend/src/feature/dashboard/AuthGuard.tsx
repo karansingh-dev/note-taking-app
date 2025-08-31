@@ -5,13 +5,18 @@ import LoadingScreen from "../../components/atoms/loading-screen";
 const ProtectedRoutes = () => {
     const { user, isLoading } = useUser();
 
+
+
     if (isLoading) return <LoadingScreen />;
 
     if (!user) {
+
         return <Navigate to="/signin" replace />;
     }
 
-    if (!user.isRegistered && location.pathname !== "/signup") {
+
+    if (!user.isRegistered) {
+
         return <Navigate to="/signup" replace />;
     }
 
