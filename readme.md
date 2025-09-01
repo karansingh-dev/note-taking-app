@@ -1,5 +1,7 @@
 # Note Taking App
 
+🚀 **Live Demo:** [https://notes.invodrop.app/](https://notes.invodrop.app/)
+
 A full-stack note-taking application with React frontend and Node.js backend featuring user authentication and Google OAuth integration.
 
 ## Project Structure
@@ -10,6 +12,15 @@ note-taking-app/
 ├── frontend/          # React application (Vite)
 └── README.md
 ```
+
+## Features
+
+- 📝 Create, edit, and delete notes
+- 🔐 User authentication with JWT
+- 🌐 Google OAuth integration
+- 📱 Responsive design
+- 🔒 Secure password management
+- 📧 Email notifications
 
 ## Prerequisites
 
@@ -103,11 +114,41 @@ npm run preview
 1. Run `npm run build`
 2. Deploy `dist` folder to hosting service
 
+## 🌐 Live Application
+
+The application is currently deployed and accessible at:
+**[https://notes.invodrop.app/](https://notes.invodrop.app/)**
+
+### Deployment Architecture
+
+- **Frontend**: Deployed on [Vercel](https://vercel.com/) for optimal performance and global CDN distribution
+- **Backend**: Deployed on AWS EC2 instance for reliable server hosting and scalability
+- **Database**: PostgreSQL database hosted on cloud infrastructure
+
 ## Required Services
 
 - **Database:** PostgreSQL instance
 - **Google OAuth:** Google Cloud Console project with OAuth credentials
 - **Email:** Gmail account with app password for NodeMailer
+
+## Technology Stack
+
+### Frontend
+- React.js with Vite
+- TypeScript
+- Tailwind CSS
+- React Router
+
+### Backend
+- Node.js with Express
+- TypeScript
+- Prisma ORM
+- JWT Authentication
+- Google OAuth 2.0
+- NodeMailer
+
+### Database
+- PostgreSQL
 
 ## Notes
 
