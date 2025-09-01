@@ -19,16 +19,16 @@ const queryClient = new QueryClient();
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
     <QueryClientProvider client={queryClient}>
-  <UserProvider>
-      <BrowserRouter>
-        <LocalizationProvider dateAdapter={AdapterDayjs}>
-          <Toaster
-            position="top-center"
-            reverseOrder={false}
-          />
-          <App />
-        </LocalizationProvider>
-      </BrowserRouter>
+      <UserProvider>
+        <BrowserRouter>
+          <LocalizationProvider dateAdapter={AdapterDayjs}>
+            <Toaster
+              position="top-center"
+              reverseOrder={false}
+            />
+            <App />
+          </LocalizationProvider>
+        </BrowserRouter>
       </UserProvider>
 
     </QueryClientProvider>

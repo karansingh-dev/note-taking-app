@@ -55,9 +55,9 @@ export default function Dashboard() {
                     <Loader className="text-blue-600" />
                     <h1 className="text-lg font-semibold">Dashboard</h1>
                 </div>
-                <button onClick={logOut} className="underline text-blue-600">
+                <Button onClick={logOut} variant="outlined" className=" text-blue-600">
                     Sign Out
-                </button>
+                </Button>
             </div>
 
             {/* Welcome Card */}
@@ -82,6 +82,11 @@ export default function Dashboard() {
             {/* Notes List */}
             <div className="w-full max-w-md space-y-3">
                 <h3 className="font-semibold text-lg text-gray-700">Notes</h3>
+                {notes?.length === 0 &&
+                    <div className="text-gray-500 text-sm text-center py-4">
+                        No notes yet, try creating a new one
+                    </div>
+                }
                 {notes?.map((note) => (
                     <Card key={note.id} className="w-full shadow-sm">
                         <CardContent className="flex justify-between items-center">
