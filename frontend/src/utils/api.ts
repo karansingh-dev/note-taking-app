@@ -50,5 +50,5 @@ export const apiCall = async <tresponse = null, trequest = null>(
     throw error;
   }
 
-  return result 
+  return result;
 };
