@@ -1,5 +1,3 @@
-export  const handleGoogleSignIn = () => {
-
-        window.location.href = "https://note.invodrop.app/api/auth/google";
-
-    };
+export const handleGoogleSignIn = () => {
+  window.location.href = import.meta.env.VITE_GOOGLE_AUTH as string;
+};
