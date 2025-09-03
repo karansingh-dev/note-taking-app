@@ -1,4 +1,4 @@
-export const baseUrl = "https://note.invodrop.app/api";
+const baseUrl = import.meta.env.VITE_BASE_URL as string;
 
 type methods = "POST" | "GET" | "PUT" | "DELETE";
 type authType = "noauth" | "protected";
