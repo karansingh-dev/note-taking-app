@@ -5,6 +5,8 @@ import { useNavigate } from "react-router-dom";
 
 export default function Home() {
 
+    
+
     const navigate = useNavigate();
 
     return <div className="min-h-screen flex flex-col items-center gap-4 justify-center">
