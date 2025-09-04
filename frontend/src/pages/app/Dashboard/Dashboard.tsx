@@ -6,7 +6,7 @@ import DialogActions from "@mui/material/DialogActions";
 import TextField from "@mui/material/TextField";
 import { Button, Card, CardContent, CircularProgress, IconButton } from "@mui/material";
 import { Trash2 } from "lucide-react";
-import { useDashboard } from "../../feature/dashboard/hooks/useDashboard";
+import { useDashboard } from "../../../feature/dashboard/hooks/useDashboard";
 
 
 
