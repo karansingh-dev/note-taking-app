@@ -2,10 +2,10 @@ import { useQuery, useQueryClient, useMutation } from "@tanstack/react-query";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
-import { useUser } from "../../context/userContext";
-import type { Notes } from "../../types";
-import type { AddNoteType } from "../../validation/noteSchema";
-import { getNotes, createNote, deleteNote } from "./api";
+import { useUser } from "../../../context/userContext";
+import type { Notes } from "../../../types";
+import type { AddNoteType } from "../../../validation/noteSchema";
+import { getNotes, createNote, deleteNote } from "../service/api";
 
 export function useDashboard() {
   const { data, isLoading, isError } = useQuery({

@@ -1,6 +1,6 @@
-import type { Notes } from "../../types";
-import { apiCall } from "../../utils/api";
-import type { AddNoteType } from "../../validation/noteSchema";
+import type { Notes } from "../../../types";
+import { apiCall } from "../../../utils/api";
+import type { AddNoteType } from "../../../validation/noteSchema";
 
 export const getNotes = async () => {
   const res = await apiCall<Notes[], null>("/note", "GET", "protected");
