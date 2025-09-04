@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
-import BasicLoader from "../../components/atoms/basic-loader";
-import { useUser } from "../../context/userContext";
+import BasicLoader from "../../../components/atoms/basic-loader";
+import { useUser } from "../../../context/userContext";
 
 export default function AuthCallback() {
 

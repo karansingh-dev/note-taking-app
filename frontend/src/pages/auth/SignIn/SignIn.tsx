@@ -1,16 +1,14 @@
-
-import SideImage from '../../components/atoms/side-image';
-import SignUpForm from '../../feature/auth/signup/components/signup-form';
-
-export default function SignUp() {
+import SideImage from '../../../components/atoms/side-image';
+import SignInForm from '../../../feature/auth/signin/components/signin-form';
 
 
 
+export default function SignIn() {
 
     return (
         <div className="min-h-screen bg-white">
             {/*  Logo In Desktop Format (top-left corner) */}
-            <div className="hidden md:flex absolute top-6 left-6 items-center">
+            <div className="hidden md:flex absolute top-6 left-6 items-center gap-2">
                 <img src="/logo-ico.png" alt="logo" className="h-8 w-8" />
                 <span className="text-lg font-semibold">HD</span>
             </div>
@@ -24,17 +22,18 @@ export default function SignUp() {
                         <span className="text-lg font-semibold">HD</span>
                     </div>
 
-                    {/* signup form  */}
-                    <SignUpForm />
+                    {/* signin form  */}
+                    <SignInForm />
 
                     <div className='text-sm font-normal mt-3'>
-                        Already have an Account?{" "}
-                        <a className='text-blue-500 underline' href="/signin">Sign in</a>
+                        Need an Account?{" "}
+                        <a className='text-blue-500 underline' href="/signup">Create one</a>
                     </div>
                 </div>
 
                 {/* image  */}
                 <SideImage />
+
             </div>
         </div>
     );
