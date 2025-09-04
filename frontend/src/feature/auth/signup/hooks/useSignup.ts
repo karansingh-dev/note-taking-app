@@ -5,9 +5,9 @@ import { toast } from "react-hot-toast";
 import { useState } from "react";
 
 import { useNavigate } from "react-router-dom";
-import { useUser } from "../../../context/userContext";
-import { apiCall } from "../../../utils/api";
-import { type SignUpData, signUpSchema } from "../../../validation/userSchema";
+import { useUser } from "../../../../context/userContext";
+import { apiCall } from "../../../../utils/api";
+import { type SignUpData, signUpSchema } from "../../../../validation/userSchema";
 
 export const useSignup = () => {
   const { setToken } = useUser();
