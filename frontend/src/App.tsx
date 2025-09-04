@@ -1,11 +1,11 @@
 import { Routes, Route } from 'react-router-dom';
-import Home from './pages/app/Home';
-import SignUp from './pages/auth/SignUp';
-import SignIn from './pages/auth/SignIn';
-import Dashboard from './pages/app/Dashboard';
-import AuthCallback from './pages/auth/AuthCallback';
+import Home from './pages/app/Root/Home';
+import SignUp from './pages/auth/SignUp/SignUp';
+import SignIn from './pages/auth/SignIn/SignIn';
+import Dashboard from './pages/app/Dashboard/Dashboard';
+import AuthCallback from './pages/auth/googleSignIn/AuthCallback';
 import ProtectedRoutes from './feature/dashboard/components/AuthGuard';
-import AuthError from './pages/auth/AuthError';
+import AuthError from './pages/auth/googleSignIn/AuthError';
 
 const App = () => {
   return (
