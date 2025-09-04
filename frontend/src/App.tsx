@@ -4,7 +4,7 @@ import SignUp from './pages/auth/SignUp';
 import SignIn from './pages/auth/SignIn';
 import Dashboard from './pages/app/Dashboard';
 import AuthCallback from './pages/auth/AuthCallback';
-import ProtectedRoutes from './feature/dashboard/AuthGuard';
+import ProtectedRoutes from './feature/dashboard/components/AuthGuard';
 import AuthError from './pages/auth/AuthError';
 
 const App = () => {

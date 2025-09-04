@@ -5,8 +5,8 @@ import DialogContent from "@mui/material/DialogContent";
 import DialogActions from "@mui/material/DialogActions";
 import TextField from "@mui/material/TextField";
 import { Button, Card, CardContent, CircularProgress, IconButton } from "@mui/material";
-import { Loader, Trash2 } from "lucide-react";
-import { useDashboard } from "../../feature/dashboard/useDashboard";
+import { Trash2 } from "lucide-react";
+import { useDashboard } from "../../feature/dashboard/hooks/useDashboard";
 
 
 
@@ -20,7 +20,7 @@ export default function Dashboard() {
         user,
         logOut,
 
-        // modal/form
+
         open,
         setOpen,
         register,
@@ -52,7 +52,8 @@ export default function Dashboard() {
             {/* Header */}
             <div className="flex justify-between items-center w-full max-w-md py-4">
                 <div className="flex items-center gap-2">
-                    <Loader className="text-blue-600" />
+                    <img src="/logo-ico.png" alt="logo" className="h-8 w-8" />
+
                     <h1 className="text-lg font-semibold">Dashboard</h1>
                 </div>
                 <Button onClick={logOut} variant="outlined" className=" text-blue-600">
